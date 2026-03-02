@@ -69,7 +69,6 @@ Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:30
 ## 🔮 Future Improvements
 
 * **Audio Feedback:** Add short, satisfying sound effects for correct answers, wrong answers, and when the timer is running low.
-* **Mobile Responsiveness:** Polish the UI to ensure buttons and layouts scale perfectly on smaller devices.
 
 ## 🤝 Contributing
 
