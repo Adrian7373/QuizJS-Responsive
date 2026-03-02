@@ -53,12 +53,11 @@ export default function Home() {
     return () => clearInterval(intervalRef.current);
   }, [questionIndex, isRunning, isLoading, isShowingAnswer])
 
-  /*
-    useEffect(() => {
-      if (countdown <= 0) {
-        setQuestionIndex((index) => index + 1);
-      }
-    }, [countdown]); */
+  useEffect(() => {
+    if (countdown <= 0) {
+      setQuestionIndex((index) => index + 1);
+    }
+  }, [countdown]);
 
   const checkAnswer = (answer) => {
     setIsShowingAnswer(true);
