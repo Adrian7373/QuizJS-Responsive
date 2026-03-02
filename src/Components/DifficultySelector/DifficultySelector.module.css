@@ -1,0 +1,11 @@
+.difficultyDiv {}
+
+.difficultyDiv>select {
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: aliceblue;
+    border-style: none;
+    margin: 5px 0px 5px 0px;
+}

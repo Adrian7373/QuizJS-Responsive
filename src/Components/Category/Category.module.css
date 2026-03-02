@@ -1,0 +1,8 @@
+.categoryDiv>select {
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    border-style: none;
+    margin: 5px 0px 5px 0px;
+}

@@ -1,0 +1,52 @@
+.mainDiv {
+    width: 40%;
+    margin: auto;
+    height: 80vh;
+    padding: 50px;
+    border-radius: 30px;
+    background-color: rgba(32, 32, 32, 0.93);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.gameOverDiv {
+    width: 40%;
+    height: 80vh;
+    padding: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(32, 32, 32, 0.93);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.gameOverDiv>:nth-child(1) {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.initialDiv {
+    width: 40%;
+    height: 80vh;
+    padding: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(32, 32, 32, 0.93);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.initialDiv>p {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.highScore {
+    font-size: 24px;
+}
