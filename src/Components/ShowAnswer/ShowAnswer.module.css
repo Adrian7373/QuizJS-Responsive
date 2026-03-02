@@ -1,9 +1,8 @@
 .answerDiv {
-    width: 40%;
+    width: 80%;
     margin: auto;
     height: 80vh;
-    padding: 50px;
-    border-radius: 30px;
+    border-radius: clamp(2rem, 3vw, 10rem);
     background-color: rgba(32, 32, 32, 0.93);
     color: white;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -11,11 +10,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
 }
 
-.answer {
-    font-size: 120px;
+.answerDiv> :nth-child(2) {
+    font-size: clamp(2.5rem, 7vw, 15rem);
     margin: 0px;
     text-align: center;
+}
+
+.answerDiv> :nth-child(1) {
+    font-size: clamp(1.5rem, 5vw, 8rem);
 }

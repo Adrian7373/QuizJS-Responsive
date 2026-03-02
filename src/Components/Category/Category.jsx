@@ -3,7 +3,7 @@ import style from "./Category.module.css";
 export default function Category({ category, selectCategory }) {
     return (
         <div className={style.categoryDiv}>
-            <select value={category} onChange={(e) => selectCategory(e.target.value)}>
+            <select className={style.select} value={category} onChange={(e) => selectCategory(e.target.value)}>
                 <option value="">Any Category</option>
                 <option value="9">General Knowledge</option>
                 <option value="10">Books</option>

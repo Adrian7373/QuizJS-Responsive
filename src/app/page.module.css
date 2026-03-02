@@ -1,19 +1,21 @@
+body {
+    margin: 0;
+}
+
 .mainDiv {
-    width: 40%;
+    width: 80%;
     margin: auto;
     height: 80vh;
-    padding: 50px;
-    border-radius: 30px;
+    border-radius: clamp(2rem, 3vw, 10rem);
     background-color: rgba(32, 32, 32, 0.93);
     color: white;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .gameOverDiv {
-    width: 40%;
+    width: 80%;
     height: 80vh;
-    padding: 50px;
-    border-radius: 30px;
+    border-radius: clamp(2rem, 3vw, 10rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,15 +26,14 @@
 }
 
 .gameOverDiv>:nth-child(1) {
-    font-size: 80px;
+    font-size: clamp(1.8rem, 4.5vw, 9rem);
     font-weight: bold;
 }
 
 .initialDiv {
-    width: 40%;
+    width: 80%;
     height: 80vh;
-    padding: 50px;
-    border-radius: 30px;
+    border-radius: clamp(2rem, 3vw, 10rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,10 +44,10 @@
 }
 
 .initialDiv>p {
-    font-size: 80px;
+    font-size: clamp(2.1rem, 5vw, 12rem);
     font-weight: bold;
 }
 
 .highScore {
-    font-size: 24px;
+    font-size: clamp(1.5rem, 2.5vw, 4rem);
 }

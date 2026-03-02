@@ -1,6 +1,6 @@
 .container {}
 
 .score {
-    font-size: 30px;
+    font-size: clamp(1rem, 2vw, 5rem);
     margin: 0;
 }

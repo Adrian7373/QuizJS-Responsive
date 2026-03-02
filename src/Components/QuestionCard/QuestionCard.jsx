@@ -13,7 +13,7 @@ export default function QuestionCard({ result, checkAnswer, score, timer, questi
     return (
         <div className={style.card}>
             <div className={style.info}>{score}{timer}</div>
-            <p>Question {questionIndex} of 10</p>
+            <p className={style.index}>Question {questionIndex} of 10</p>
             <p className={style.question} dangerouslySetInnerHTML={{ __html: result.question }}></p>
             <div className={style.answers}>
                 {shuffledAnswers.map((answer, index) => {
