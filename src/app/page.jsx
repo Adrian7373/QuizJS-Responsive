@@ -24,18 +24,23 @@ export default function Home() {
   const [category, setCategory] = useState("");
   const [isShowingAnswer, setIsShowingAnswer] = useState(false);
   const intervalRef = useRef(null);
+  const bgmusicRef = useRef(null)
 
   const isFinished = questions?.results && questionIndex >= questions.results.length;
 
   useEffect(() => {
-    const bgmusic = new Audio("/sounds/bgmusic.mp3");
-    if (isRunning && !isFinished) {
-      bgmusic.volume = 0.5;
-      playAudio(bgmusic);
-    } else {
-      stopAudio(bgmusic);
+    if (!bgmusicRef.current) {
+      bgmusicRef.current = new Audio("/sounds/bgmusic.mp3");
+      bgmusicRef.current.loop = true;
     }
-  }, [isRunning]);
+
+    if (isRunning && !isFinished) {
+      bgmusicRef.current.volume = 0.5;
+      playAudio(bgmusicRef.current);
+    } else {
+      stopAudio(bgmusicRef.current);
+    }
+  }, [isRunning, isFinished]);
 
   const fetchQuestions = async () => {
     try {
@@ -65,12 +70,31 @@ export default function Home() {
     return () => clearInterval(intervalRef.current);
   }, [questionIndex, isRunning, isLoading, isShowingAnswer])
 
-  /*
   useEffect(() => {
-    if (countdown <= 0) {
-      setQuestionIndex((index) => index + 1);
+    if (countdown <= 0 && !isShowingAnswer) {
+
+      playAudio(new Audio("/sounds/wrong.mp3"));
+      setIsShowingAnswer(true);
+
+      setTimeout(() => {
+        setIsShowingAnswer(false);
+        setQuestionIndex((index) => index + 1);
+      }, 3000);
     }
-  }, [countdown]); */
+  }, [countdown]);
+
+  useEffect(() => {
+    if (isFinished) {
+      playAudio(new Audio("/sounds/finished.mp3"));
+      const prevHighScore = localStorage.getItem("highscore");
+      if (prevHighScore) {
+        if (score > prevHighScore) localStorage.setItem("highscore", score);
+      } else {
+        localStorage.setItem("highscore", score);
+      }
+      setQuestions(null);
+    }
+  }, [isFinished]);
 
   const checkAnswer = (answer) => {
     if (answer === questions.results[questionIndex].correct_answer) {
@@ -123,17 +147,6 @@ export default function Home() {
     )
   }
 
-  if (isFinished) {
-    const prevHighScore = localStorage.getItem("highscore")
-    if (prevHighScore) {
-      if (score > prevHighScore)
-        localStorage.setItem("highscore", score);
-    } else {
-      localStorage.setItem("highscore", score);
-    }
-    setQuestions(null);
-  }
-
   if (isShowingAnswer) {
     return (
       <ShowAnswer
@@ -178,7 +191,6 @@ export default function Home() {
       </div>
     )
   } else {
-    playAudio(new Audio("/sounds/finished.mp3"));
     return (
       <div className={style.gameOverDiv}>
         <p>Congratulations!</p>
