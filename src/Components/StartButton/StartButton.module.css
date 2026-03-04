@@ -10,6 +10,13 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.startButton:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(126, 34, 206, 0.5);
+    background-color: #9333ea;
+    cursor: pointer;
+}
+
 @media (min-width:768px) {
     .startButton {
         width: 320px;

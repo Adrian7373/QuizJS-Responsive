@@ -21,6 +21,12 @@
     background-color: blueviolet;
     color: white;
     border-style: none;
+    cursor: pointer;
+}
+
+.answers>*:hover {
+    background-color: #9333ea;
+    transform: scale(1.03);
 }
 
 

@@ -25,6 +25,18 @@ export default function Home() {
   const [isShowingAnswer, setIsShowingAnswer] = useState(false);
   const intervalRef = useRef(null);
 
+  const isFinished = questions?.results && questionIndex >= questions.results.length;
+
+  useEffect(() => {
+    const bgmusic = new Audio("/sounds/bgmusic.mp3");
+    if (isRunning && !isFinished) {
+      bgmusic.volume = 0.5;
+      playAudio(bgmusic);
+    } else {
+      stopAudio(bgmusic);
+    }
+  }, [isRunning]);
+
   const fetchQuestions = async () => {
     try {
       if (!category) {
@@ -53,13 +65,17 @@ export default function Home() {
     return () => clearInterval(intervalRef.current);
   }, [questionIndex, isRunning, isLoading, isShowingAnswer])
 
+  /*
   useEffect(() => {
     if (countdown <= 0) {
       setQuestionIndex((index) => index + 1);
     }
-  }, [countdown]);
+  }, [countdown]); */
 
   const checkAnswer = (answer) => {
+    if (answer === questions.results[questionIndex].correct_answer) {
+      playAudio(new Audio("/sounds/success.mp3"))
+    } else playAudio(new Audio("/sounds/wrong.mp3"))
     setIsShowingAnswer(true);
     setTimeout(() => {
       if (answer === questions.results[questionIndex].correct_answer) {
@@ -70,6 +86,16 @@ export default function Home() {
     }, 3000);
   }
 
+  const playAudio = (audio) => {
+    audio.play().catch((err) => {
+      console.log("Audio play failed:", err);
+    })
+  }
+
+  const stopAudio = (audio) => {
+    audio.pause();
+    audio.currentTime = 0;
+  }
 
   const startGame = () => {
     setIsLoading(true);
@@ -97,7 +123,6 @@ export default function Home() {
     )
   }
 
-  const isFinished = questions?.results && questionIndex >= questions.results.length;
   if (isFinished) {
     const prevHighScore = localStorage.getItem("highscore")
     if (prevHighScore) {
@@ -106,6 +131,7 @@ export default function Home() {
     } else {
       localStorage.setItem("highscore", score);
     }
+    setQuestions(null);
   }
 
   if (isShowingAnswer) {
@@ -147,10 +173,12 @@ export default function Home() {
         />
         < StartButton
           start={startGame}
+          playAudio={playAudio}
         />
       </div>
     )
   } else {
+    playAudio(new Audio("/sounds/finished.mp3"));
     return (
       <div className={style.gameOverDiv}>
         <p>Congratulations!</p>
@@ -170,6 +198,7 @@ export default function Home() {
         />
         <StartButton
           start={startGame}
+          playAudio={playAudio}
         />
       </div>
     )

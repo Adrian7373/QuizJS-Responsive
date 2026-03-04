@@ -24,6 +24,7 @@
     background-position: right 1rem center;
     background-size: 0.5em auto;
     padding-right: 3rem;
+    cursor: pointer;
 }
 
 @media (min-width:768px) {
