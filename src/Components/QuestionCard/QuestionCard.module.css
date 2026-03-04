@@ -25,10 +25,10 @@
 
 
 .question {
-    font-size: clamp(1rem, 2.5vw, 7rem);
+    font-size: clamp(1rem, 1.7vw, 7rem);
     text-align: justify;
 }
 
 .index {
-    font-size: clamp(0.8rem, 2vw, 2.5rem);
+    font-size: clamp(0.8rem, 1.2vw, 2.5rem);
 }
