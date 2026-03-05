@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
+/** @type { import('next').NextConfig } */
 const nextConfig = {
-  output: 'export', // Required for GitHub Pages
-  basePath: '/quizjs-responsive', // IMPORTANT: Replace with your exact GitHub repository name
+  output: 'export',
+  basePath: '/QuizJS-Responsive',
+  assetPrefix: '/QuizJS-Responsive/',
   images: {
     unoptimized: true,
   }
