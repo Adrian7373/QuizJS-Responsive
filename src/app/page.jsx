@@ -195,7 +195,7 @@ export default function Home() {
   } else {
     return (
       <div className={style.gameOverDiv}>
-        <p>Congratulations!</p>
+        <p>Congratulations!!!</p>
         <ScoreTimeContext.Provider value={{ score }}>
           <Score
             score={score}
