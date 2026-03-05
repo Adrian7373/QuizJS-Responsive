@@ -12,7 +12,7 @@ import Loading from "@/Components/Loading/Loading";
 import Category from "@/Components/Category/Category";
 import ShowAnswer from "@/Components/ShowAnswer/ShowAnswer";
 
-const assetPrefix = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
 
 export default function Home() {
 
@@ -32,7 +32,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!bgmusicRef.current) {
-      bgmusicRef.current = new Audio("/sounds/bgmusic.mp3");
+      bgmusicRef.current = new Audio(`${basePath}/sounds/bgmusic.mp3`);
       bgmusicRef.current.loop = true;
     }
 
@@ -75,7 +75,7 @@ export default function Home() {
   useEffect(() => {
     if (countdown <= 0 && !isShowingAnswer) {
 
-      playAudio(new Audio("/sounds/wrong.mp3"));
+      playAudio(new Audio(`${basePath}/sounds/wrong.mp3`));
       setIsShowingAnswer(true);
 
       setTimeout(() => {
@@ -87,7 +87,7 @@ export default function Home() {
 
   useEffect(() => {
     if (isFinished) {
-      playAudio(new Audio("/sounds/finished.mp3"));
+      playAudio(new Audio(`${basePath}/sounds/finished.mp3`));
       const prevHighScore = localStorage.getItem("highscore");
       if (prevHighScore) {
         if (score > prevHighScore) localStorage.setItem("highscore", score);
@@ -100,8 +100,8 @@ export default function Home() {
 
   const checkAnswer = (answer) => {
     if (answer === questions.results[questionIndex].correct_answer) {
-      playAudio(new Audio("/sounds/success.mp3"))
-    } else playAudio(new Audio("/sounds/wrong.mp3"))
+      playAudio(new Audio(`${basePath}/sounds/success.mp3`))
+    } else playAudio(new Audio(`${basePath}/sounds/wrong.mp3`))
     setIsShowingAnswer(true);
     setTimeout(() => {
       if (answer === questions.results[questionIndex].correct_answer) {
