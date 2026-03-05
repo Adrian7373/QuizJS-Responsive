@@ -2,10 +2,13 @@
 
 QuizJS is an interactive, fully responsive, timed trivia application built using **Next.js** and **React**. Test your knowledge with dynamically generated questions from the Open Trivia Database, beat the 15-second clock, and track your high score with immersive audio feedback!
 
+### 🎮 Play the Live Demo: [https://adrian7373.github.io/QuizJS-Responsive/](https://adrian7373.github.io/QuizJS-Responsive/)
+
 ## 🚀 Features
 
+* **Automated CI/CD Deployment:** Fully configured with GitHub Actions to automatically build and deploy to GitHub Pages on every push to the `main` branch.
 * **Fully Responsive UI:** The layout has been polished to scale perfectly and provide a seamless, intuitive experience across desktops, tablets, and mobile devices.
-* **Immersive Audio Feedback:** Enhances the gameplay experience with dedicated sound effects for starting the game, background music, correct/wrong answers, and a final "game over" chime.
+* **Cross-Browser Audio Engine:** Features immersive background music and sound effects (success, wrong, game over). The audio engine handles strict mobile browser autoplay policies, ensuring sound works on iOS Safari and Android devices.
 * **Dynamic Trivia:** Automatically fetches 10 random multiple-choice questions per game using the [Open Trivia Database (OpenTDB) API](https://opentdb.com/).
 * **High Score Tracking:** Uses `localStorage` to automatically save and display your personal best score across different browser sessions.
 * **Answer Reveal Mechanic:** After selecting an answer, the game briefly pauses to reveal the correct answer on a dedicated screen before moving to the next question.
@@ -18,6 +21,8 @@ QuizJS is an interactive, fully responsive, timed trivia application built using
 
 * **Framework:** [Next.js](https://nextjs.org/) (v16.1.6)
 * **Library:** [React](https://react.dev/) (v19.2.3)
+* **CI/CD:** GitHub Actions
+* **Performance Tooling:** React Scan
 * **State Management:** React Context API & LocalStorage
 * **API:** [Open Trivia Database](https://opentdb.com/)
 * **Assets:** HTML5 Audio API
@@ -27,6 +32,9 @@ QuizJS is an interactive, fully responsive, timed trivia application built using
 
 ```text
 /
+├── .github
+│   └── workflows
+│       └── nextjs.yml          # GitHub Actions CI/CD pipeline for automated Pages deployment
 ├── public
 │   └── sounds                  # Audio assets (bgmusic, start, success, wrong, finished)
 ├── src
@@ -47,9 +55,9 @@ QuizJS is an interactive, fully responsive, timed trivia application built using
 
 ```
 
-## 🔧 Getting Started
+## 🔧 Getting Started & Local Development
 
-First, install the dependencies:
+If you want to run the code locally, first install the dependencies:
 
 ```bash
 npm install
@@ -69,6 +77,12 @@ yarn dev
 
 Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) with your browser to start playing!
 
+### 🌍 Automated GitHub Pages Deployment
+
+This project features a continuous deployment pipeline. Whenever code is pushed to the `main` branch, the `.github/workflows/nextjs.yml` action automatically triggers a Next.js static export build and deploys the generated `out` folder directly to GitHub Pages. You can view the live automated build at [https://adrian7373.github.io/QuizJS-Responsive/](https://adrian7373.github.io/QuizJS-Responsive/).
+
+Additionally, the application intelligently prepends the repository base path to static assets (like audio files) when running in the production environment, preventing `404 Not Found` errors.
+
 ## 🔮 Future Improvements
 
 * **Smooth Transitions:** Add Framer Motion or pure CSS animations to smoothly fade between the question, answer reveal, and game over screens.
@@ -82,6 +96,3 @@ Contributions are welcome! If you have ideas for new features or UI improvements
 ---
 
 Made with ❤️ by Adrian Ablaza
-```
-
-```
