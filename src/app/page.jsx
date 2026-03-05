@@ -1,5 +1,3 @@
-const assetPrefix = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -13,6 +11,8 @@ import DifficultySelector from "@/Components/DifficultySelector/DifficultySelect
 import Loading from "@/Components/Loading/Loading";
 import Category from "@/Components/Category/Category";
 import ShowAnswer from "@/Components/ShowAnswer/ShowAnswer";
+
+const assetPrefix = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
 
 export default function Home() {
 
