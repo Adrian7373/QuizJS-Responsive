@@ -1,6 +1,6 @@
 import style from "./StartButton.module.css";
 
-const basePath = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
 
 export default function StartButton({ start, playAudio }) {
 

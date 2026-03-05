@@ -12,7 +12,7 @@ import Loading from "@/Components/Loading/Loading";
 import Category from "@/Components/Category/Category";
 import ShowAnswer from "@/Components/ShowAnswer/ShowAnswer";
 
-const basePath = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
 
 export default function Home() {
 
