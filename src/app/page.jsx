@@ -63,7 +63,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (questions && isRunning && !isLoading && !isShowingAnswer) {
+    if (questions && isRunning && !isLoading && !isShowingAnswer && !isFinished) {
       setCountdown(15000);
       intervalRef.current = setInterval(() => {
         setCountdown((prevTime) => prevTime - 1000);
@@ -73,7 +73,7 @@ export default function Home() {
   }, [questionIndex, isRunning, isLoading, isShowingAnswer])
 
   useEffect(() => {
-    if (countdown <= 0 && !isShowingAnswer) {
+    if (countdown <= 0 && !isShowingAnswer && !isFinished && isRunning) {
 
       playAudio(new Audio(`${basePath}/sounds/wrong.mp3`));
       setIsShowingAnswer(true);
