@@ -1,3 +1,5 @@
+const assetPrefix = process.env.NODE_ENV === "production" ? "/quizjs-responsive" : "";
+
 "use client";
 
 import { useState, useEffect, useRef } from "react";
