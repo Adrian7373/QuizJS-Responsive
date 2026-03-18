@@ -1,6 +1,10 @@
 import style from "./ShowAnswer.module.css";
 
-export default function ShowAnswer({ correctAnswer }) {
+interface ShowAnswerProps {
+    correctAnswer: string;
+}
+
+export default function ShowAnswer({ correctAnswer }: ShowAnswerProps) {
     return (
         <div className={style.answerDiv}>
             <p>Correct Answer is</p>

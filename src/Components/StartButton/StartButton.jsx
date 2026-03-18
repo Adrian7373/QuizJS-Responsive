@@ -2,7 +2,12 @@ import style from "./StartButton.module.css";
 
 const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
 
-export default function StartButton({ start, playAudio }) {
+interface StartButtonProps {
+    start: () => void;
+    playAudio: () => void;
+}
+
+export default function StartButton({ start, playAudio }: StartButtonProps) {
 
     return (
         <button className={style.startButton} onClick={() => {
