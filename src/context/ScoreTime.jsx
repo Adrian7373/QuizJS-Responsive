@@ -1,3 +1,8 @@
 import { createContext } from "react";
 
-export const ScoreTimeContext = createContext(null);
+interface ScoreTimeContextType {
+    countdown: number;
+    time?: number;
+}
+
+export const ScoreTimeContext = createContext < ScoreTimeContextType | null > (null);

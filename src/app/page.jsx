@@ -181,10 +181,10 @@ export default function Home() {
           <QuestionCard
             result={questions.results[questionIndex]}
             checkAnswer={checkAnswer}
+            questionIndex={questionIndex}
             score={<Score />}
             timer={<Timer />}
-            questionIndex={questionIndex}
-          ></QuestionCard>
+          />
         </ScoreTimeContext.Provider>
       </div>
     )
