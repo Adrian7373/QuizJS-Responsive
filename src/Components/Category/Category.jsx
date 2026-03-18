@@ -1,6 +1,11 @@
 import style from "./Category.module.css";
 
-export default function Category({ category, selectCategory }) {
+interface CategoryProps {
+    category: string;
+    selectCategory: () => void;
+}
+
+export default function Category({ category, selectCategory }: CategoryProps) {
     return (
         <div className={style.categoryDiv}>
             <select className={style.select} value={category} onChange={(e) => selectCategory(e.target.value)}>
