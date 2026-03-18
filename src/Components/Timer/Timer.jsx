@@ -4,6 +4,10 @@ import { ScoreTimeContext } from "@/context/ScoreTime";
 
 export default function Timer() {
 
+    const context = useContext(ScoreTimeContext);
+    if (!context) {
+        return null;
+    }
     const { countdown } = useContext(ScoreTimeContext);
 
     return (
