@@ -1,6 +1,11 @@
 import style from "./DifficultySelector.module.css";
 
-export default function DifficultySelector({ selectDifficulty, difficulty }) {
+interface DifficultySelectorProps {
+    selectDifficulty: () => void;
+    difficulty: String;
+}
+
+export default function DifficultySelector({ selectDifficulty, difficulty }: DifficultySelectorProps) {
     return (
         <div className={style.difficultyDiv}>
             <select className={style.select} value={difficulty} onChange={(e) => selectDifficulty(e.target.value)}>
