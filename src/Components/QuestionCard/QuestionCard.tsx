@@ -11,7 +11,7 @@ interface Question {
 }
 interface QuestionCardProps {
     result: Question;
-    checkAnswer: () => string;
+    checkAnswer: (answer: string) => void;
     questionIndex: number;
     score: React.ReactNode;
     timer: React.ReactNode;

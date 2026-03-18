@@ -1,8 +1,8 @@
 import style from "./DifficultySelector.module.css";
 
 interface DifficultySelectorProps {
-    selectDifficulty: () => void;
-    difficulty: String;
+    selectDifficulty: (selectedValue: string) => void;
+    difficulty: string;
 }
 
 export default function DifficultySelector({ selectDifficulty, difficulty }: DifficultySelectorProps) {

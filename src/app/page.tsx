@@ -30,15 +30,15 @@ export default function Home() {
     results: Question[];
   }
 
-  const [questions, setQuestions] = useState < Response | null > (null);
-  const [score, setScore] = useState < number > (0);
-  const [questionIndex, setQuestionIndex] = useState < number > (0);
-  const [countdown, setCountdown] = useState < number > (15000);
-  const [isLoading, setIsLoading] = useState < boolean > (false);
-  const [isRunning, setIsRunning] = useState < boolean > (false);
-  const [difficulty, setDifficulty] = useState < string > ("easy");
-  const [category, setCategory] = useState < string > ("");
-  const [isShowingAnswer, setIsShowingAnswer] = useState < boolean > (false);
+  const [questions, setQuestions] = useState<Response | null>(null);
+  const [score, setScore] = useState<number>(0);
+  const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const [countdown, setCountdown] = useState<number>(15000);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [difficulty, setDifficulty] = useState<string>("easy");
+  const [category, setCategory] = useState<string>("");
+  const [isShowingAnswer, setIsShowingAnswer] = useState<boolean>(false);
   const intervalRef = useRef(null);
   const bgmusicRef = useRef(null)
 
@@ -104,15 +104,15 @@ export default function Home() {
       playAudio(new Audio(`${basePath}/sounds/finished.mp3`));
       const prevHighScore = localStorage.getItem("highscore");
       if (prevHighScore) {
-        if (score > prevHighScore) localStorage.setItem("highscore", score);
+        if (score > JSON.parse(prevHighScore)) localStorage.setItem("highscore", JSON.stringify(score));
       } else {
-        localStorage.setItem("highscore", score);
+        localStorage.setItem("highscore", JSON.stringify(score));
       }
       setQuestions(null);
     }
   }, [isFinished]);
 
-  const checkAnswer = (answer) => {
+  const checkAnswer = (answer: string) => {
     if (answer === questions.results[questionIndex].correct_answer) {
       playAudio(new Audio(`${basePath}/sounds/success.mp3`))
     } else playAudio(new Audio(`${basePath}/sounds/wrong.mp3`))
@@ -211,9 +211,7 @@ export default function Home() {
       <div className={style.gameOverDiv}>
         <p>Congratulations!!!</p>
         <ScoreTimeContext.Provider value={{ score }}>
-          <Score
-            score={score}
-          />
+          <Score />
           <p className={style.highScore}>Highest Score: {localStorage.getItem("highscore")}</p>
         </ScoreTimeContext.Provider>
         <DifficultySelector

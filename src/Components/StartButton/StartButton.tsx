@@ -4,7 +4,7 @@ const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : 
 
 interface StartButtonProps {
     start: () => void;
-    playAudio: () => void;
+    playAudio: (audio: HTMLAudioElement) => void;
 }
 
 export default function StartButton({ start, playAudio }: StartButtonProps) {

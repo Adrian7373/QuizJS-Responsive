@@ -2,7 +2,7 @@ import style from "./Category.module.css";
 
 interface CategoryProps {
     category: string;
-    selectCategory: () => void;
+    selectCategory: (selectedValue: string) => void;
 }
 
 export default function Category({ category, selectCategory }: CategoryProps) {
