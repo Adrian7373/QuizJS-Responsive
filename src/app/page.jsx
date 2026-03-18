@@ -16,15 +16,29 @@ const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : 
 
 export default function Home() {
 
-  const [questions, setQuestions] = useState(null);
-  const [score, setScore] = useState(0);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [countdown, setCountdown] = useState(15000);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
-  const [difficulty, setDifficulty] = useState("easy");
-  const [category, setCategory] = useState("");
-  const [isShowingAnswer, setIsShowingAnswer] = useState(false);
+  interface Question {
+    type: string;
+    difficulty: string;
+    category: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+  }
+
+  interface Response {
+    response_code: number;
+    results: Question[];
+  }
+
+  const [questions, setQuestions] = useState < Response | null > (null);
+  const [score, setScore] = useState < number > (0);
+  const [questionIndex, setQuestionIndex] = useState < number > (0);
+  const [countdown, setCountdown] = useState < number > (15000);
+  const [isLoading, setIsLoading] = useState < boolean > (false);
+  const [isRunning, setIsRunning] = useState < boolean > (false);
+  const [difficulty, setDifficulty] = useState < string > ("easy");
+  const [category, setCategory] = useState < string > ("");
+  const [isShowingAnswer, setIsShowingAnswer] = useState < boolean > (false);
   const intervalRef = useRef(null);
   const bgmusicRef = useRef(null)
 
