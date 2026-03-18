@@ -1,7 +1,23 @@
 import { useMemo } from "react";
 import style from "./QuestionCard.module.css";
 
-export default function QuestionCard({ result, checkAnswer, score, timer, questionIndex }) {
+interface Question {
+    type: string;
+    difficulty: string;
+    category: string;
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+}
+interface QuestionCardProps {
+    result: Question;
+    checkAnswer: () => string;
+    questionIndex: number;
+    score: React.ReactNode;
+    timer: React.ReactNode;
+}
+
+export default function QuestionCard({ result, checkAnswer, questionIndex, score, timer }: QuestionCardProps) {
 
     const shuffledAnswers = useMemo(() => {
         const combined = [...result.incorrect_answers, result.correct_answer];
