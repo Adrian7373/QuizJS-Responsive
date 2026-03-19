@@ -1,7 +1,16 @@
+import { useEffect } from "react";
 import style from "./ShowAnswer.module.css";
-import { useQuizState } from "@/context/QuizContext";
+import { useQuizDispatch, useQuizState } from "@/context/QuizContext";
 
 export default function ShowAnswer() {
+
+    const dispatch = useQuizDispatch();
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            dispatch({ type: "answer_hidden" });
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [dispatch])
 
     const correctAnswer = useQuizState().questions.results[useQuizState().questionIndex].correct_answer;
 

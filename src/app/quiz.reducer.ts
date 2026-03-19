@@ -24,9 +24,8 @@ export const quizReducer = (state: State, action: quizAction) => {
             return {
                 ...state,
                 score: isCorrect ? state.score + 1 : state.score,
-                isRunning: isLastQuestion ? false : true,
-                questionIndex: state.questionIndex + 1,
-                countdown: 15000,
+                isShowingAnswer: true,
+                isRunning: false
             }
         }
         case "fetch_started": {
@@ -62,16 +61,16 @@ export const quizReducer = (state: State, action: quizAction) => {
                 countdown: state.countdown - 1000
             }
         }
-        case "answer_showed": {
-            return {
-                ...state,
-                isShowingAnswer: true
-            }
-        }
         case "answer_hidden": {
+
+            const isLastQuestion = state.questionIndex === state.questions.results.length - 1;
+
             return {
                 ...state,
-                isShowingAnswer: false
+                isShowingAnswer: false,
+                questionIndex: state.questionIndex + 1,
+                countdown: 15000,
+                isRunning: isLastQuestion ? false : true
             }
         }
         default:

@@ -37,14 +37,6 @@ function QuizMain() {
       return () => clearInterval(intervalRef.current);
   }, [state.isRunning, state.countdown, dispatch]);
 
-  useEffect(() => {
-    if (state.questions) {
-      const timer = setTimeout(() => {
-        dispatch({ type: "answer_hidden" })
-      }, 3000);
-      dispatch({ type: "answer_showed" });
-    }
-  }, [dispatch])
 
   const fetchQuestions = async () => {
     dispatch({ type: "fetch_started" })
