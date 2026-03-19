@@ -23,6 +23,7 @@ export interface State {
     difficulty: "easy" | "medium" | "hard";
     category: string;
     isShowingAnswer: boolean;
+    isFinished: boolean
 }
 
 export type Difficulty = "easy" | "medium" | "hard";

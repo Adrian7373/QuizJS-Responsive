@@ -19,7 +19,6 @@ export const quizReducer = (state: State, action: quizAction) => {
             if (!state.questions) return state;
 
             const isCorrect = action.payload === state.questions.results[state.questionIndex].correct_answer;
-            const isLastQuestion = state.questionIndex === state.questions.results.length - 1;
 
             return {
                 ...state,
@@ -38,22 +37,24 @@ export const quizReducer = (state: State, action: quizAction) => {
             return {
                 ...state,
                 questions: action.payload,
+                score: 0,
+                questionIndex: 0,
+                countdown: 15000,
                 isLoading: false,
-                isRunning: true
+                isRunning: true,
+                isShowingAnswer: false,
+                isFinished: false
             }
         }
         case "time_ticked": {
+            if (!state.questions) return state;
+
             if (action.payload === 0) {
-                if (state.questionIndex === state.questions.results.length) {
-                    return {
-                        ...state,
-                        isRunning: false
-                    }
-                }
                 return {
                     ...state,
-                    questionIndex: state.questionIndex + 1,
-                    countdown: 15000,
+                    isShowingAnswer: true,
+                    isRunning: false,
+                    countdown: 0
                 }
             }
             return {
@@ -62,15 +63,24 @@ export const quizReducer = (state: State, action: quizAction) => {
             }
         }
         case "answer_hidden": {
+            if (!state.questions) return state;
 
             const isLastQuestion = state.questionIndex === state.questions.results.length - 1;
 
+            if (isLastQuestion) {
+                return {
+                    ...state,
+                    isShowingAnswer: false,
+                    isRunning: false,
+                    isFinished: true
+                }
+            }
             return {
                 ...state,
                 isShowingAnswer: false,
                 questionIndex: state.questionIndex + 1,
                 countdown: 15000,
-                isRunning: isLastQuestion ? false : true
+                isRunning: true
             }
         }
         default:

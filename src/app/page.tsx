@@ -26,6 +26,22 @@ function QuizMain() {
   const state = useQuizState();
   const dispatch = useQuizDispatch();
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [highScore, setHighScore] = useState(0);
+
+  useEffect(() => {
+    const stored = Number(localStorage.getItem("highscore") ?? "0");
+    setHighScore(Number.isNaN(stored) ? 0 : stored);
+  }, []);
+
+  useEffect(() => {
+    if (!state.isFinished) return;
+
+    const nextHighScore = Math.max(highScore, state.score);
+    localStorage.setItem("highscore", String(nextHighScore));
+    if (nextHighScore !== highScore) {
+      setHighScore(nextHighScore);
+    }
+  }, [state.isFinished, state.score, highScore]);
 
   useEffect(() => {
     if (state.questions && state.isRunning && !state.isLoading) {
@@ -77,6 +93,21 @@ function QuizMain() {
         />
       </div>
     )
+  } else if (state.isFinished) {
+    return (
+      <div className={style.gameOverDiv}>
+        <p>Congratulations!!!</p>
+        <Score />
+        <p className={style.highScore}>Highest Score: {highScore}</p>
+        <DifficultySelector
+        />
+        <Category
+        />
+        <StartButton
+          fetchQuestions={fetchQuestions}
+        />
+      </div>
+    )
   } else if (!state.isRunning) {
     return (
       <div className={style.initialDiv}>
@@ -90,20 +121,7 @@ function QuizMain() {
         />
       </div>
     )
-  } else {
-    return (
-      <div className={style.gameOverDiv}>
-        <p>Congratulations!!!</p>
-        <Score />
-        <p className={style.highScore}>Highest Score: {localStorage.getItem("highscore")}</p>
-        <DifficultySelector
-        />
-        <Category
-        />
-        <StartButton
-          fetchQuestions={fetchQuestions}
-        />
-      </div>
-    )
   }
+
+  return null;
 }

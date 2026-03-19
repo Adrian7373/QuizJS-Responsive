@@ -8,7 +8,7 @@ export default function ShowAnswer() {
     useEffect(() => {
         const timer = setTimeout(() => {
             dispatch({ type: "answer_hidden" });
-        }, 3000);
+        }, 2000);
         return () => clearTimeout(timer);
     }, [dispatch])
 
