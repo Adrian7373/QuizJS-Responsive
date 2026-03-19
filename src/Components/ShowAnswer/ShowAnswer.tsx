@@ -1,10 +1,10 @@
 import style from "./ShowAnswer.module.css";
+import { useQuizState } from "@/context/QuizContext";
 
-interface ShowAnswerProps {
-    correctAnswer: string;
-}
+export default function ShowAnswer() {
 
-export default function ShowAnswer({ correctAnswer }: ShowAnswerProps) {
+    const correctAnswer = useQuizState().questions.results[useQuizState().questionIndex].correct_answer;
+
     return (
         <div className={style.answerDiv}>
             <p>Correct Answer is</p>

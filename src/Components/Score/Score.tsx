@@ -1,14 +1,10 @@
 import style from "./Score.module.css";
 import { useContext } from "react";
-import { ScoreTimeContext } from "@/context/ScoreTime";
+import { useQuizState } from "@/context/QuizContext";
 
 export default function Score() {
 
-    const context = useContext(ScoreTimeContext);
-    if (!context) {
-        return null;
-    }
-    const { score } = useContext(ScoreTimeContext);
+    const { score } = useQuizState();
 
     return (
         <div className={style.container}>
