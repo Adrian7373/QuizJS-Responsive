@@ -69,6 +69,8 @@ function QuizMain() {
     }
     catch (err) {
       console.log(err);
+      // Ensure loading state is cleared even when the fetch fails
+      dispatch({ type: "fetch_finished", payload: { results: [] } });
     }
   }
 
