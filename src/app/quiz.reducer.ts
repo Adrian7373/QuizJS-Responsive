@@ -1,7 +1,4 @@
-import { playSound } from "@/context/QuizContext";
 import { State, quizAction } from "./quiz.types"
-
-let bgmAudio: HTMLAudioElement | null = null;
 
 export const quizReducer = (state: State, action: quizAction) => {
     switch (action.type) {
@@ -23,10 +20,6 @@ export const quizReducer = (state: State, action: quizAction) => {
 
             const isCorrect = action.payload === state.questions.results[state.questionIndex].correct_answer;
 
-            if (isCorrect) {
-                playSound("success.mp3");
-            } else playSound("wrong.mp3");
-
             return {
                 ...state,
                 score: isCorrect ? state.score + 1 : state.score,
@@ -41,10 +34,6 @@ export const quizReducer = (state: State, action: quizAction) => {
             }
         }
         case "fetch_finished": {
-            if (!bgmAudio) {
-                bgmAudio = playSound("bgmusic.mp3");
-                bgmAudio.loop = true;
-            }
             return {
                 ...state,
                 questions: action.payload,
@@ -61,7 +50,6 @@ export const quizReducer = (state: State, action: quizAction) => {
             if (!state.questions) return state;
 
             if (action.payload === 0) {
-                playSound("wrong.mp3");
                 return {
                     ...state,
                     isShowingAnswer: true,
@@ -80,9 +68,6 @@ export const quizReducer = (state: State, action: quizAction) => {
             const isLastQuestion = state.questionIndex === state.questions.results.length - 1;
 
             if (isLastQuestion) {
-                playSound("finished.mp3");
-                bgmAudio?.pause();
-                bgmAudio = null;
                 return {
                     ...state,
                     isShowingAnswer: false,
