@@ -1,20 +1,18 @@
 import style from "./StartButton.module.css";
-
-const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
+import { playSound } from "@/context/QuizContext";
 
 interface StartButtonProps {
-    start: () => void;
-    playAudio: (audio: HTMLAudioElement) => void;
+    fetchQuestions: () => void;
 }
 
-export default function StartButton({ start, playAudio }: StartButtonProps) {
+export default function StartButton({ fetchQuestions }: StartButtonProps) {
 
     return (
         <button className={style.startButton} onClick={() => {
-            start();
-            const startAudio = new Audio(`${basePath}/sounds/start.mp3`);
-            playAudio(startAudio);
-        }}>
+            fetchQuestions();
+            playSound("start.mp3");
+        }
+        }>
             Start
         </button>
     )

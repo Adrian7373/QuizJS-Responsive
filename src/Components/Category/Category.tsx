@@ -1,14 +1,15 @@
 import style from "./Category.module.css";
+import { useQuizDispatch, useQuizState } from "@/context/QuizContext";
 
-interface CategoryProps {
-    category: string;
-    selectCategory: (selectedValue: string) => void;
-}
 
-export default function Category({ category, selectCategory }: CategoryProps) {
+export default function Category() {
+
+    const { category } = useQuizState();
+    const dispatch = useQuizDispatch();
+
     return (
         <div className={style.categoryDiv}>
-            <select className={style.select} value={category} onChange={(e) => selectCategory(e.target.value)}>
+            <select className={style.select} value={category} onChange={(e) => dispatch({ type: "category_changed", payload: e.target.value })}>
                 <option value="">Any Category</option>
                 <option value="9">General Knowledge</option>
                 <option value="10">Books</option>
