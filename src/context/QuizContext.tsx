@@ -1,9 +1,12 @@
+"use client";
+
 import { quizReducer } from "@/app/quiz.reducer";
 import { quizAction, State } from "@/app/quiz.types";
-import { createContext, useContext, useReducer, ReactNode, Children } from "react";
+import { createContext, useContext, useReducer, ReactNode } from "react";
 
+const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
 const QuizStateContext = createContext<State | null>(null);
-const QuizDispatchContext = createContext<React.Dispatch<quizAction>>(null);
+const QuizDispatchContext = createContext<React.Dispatch<quizAction> | null>(null);
 
 export const initialState: State = {
     questions: null,
@@ -23,9 +26,9 @@ export function QuizProvider({ children }: { children: ReactNode }) {
 
     return (
         <QuizStateContext.Provider value={state}>
-            <QuizDispatchContext value={dispatch}>
+            <QuizDispatchContext.Provider value={dispatch}>
                 {children}
-            </QuizDispatchContext>
+            </QuizDispatchContext.Provider>
         </QuizStateContext.Provider>
     )
 }
@@ -44,4 +47,10 @@ export const useQuizDispatch = () => {
         throw new Error("useQuizDispatch must be used within a QuizProvider")
     }
     return context;
+}
+
+export const playSound = (soundFile: string) => {
+    const audio = new Audio(`${basePath}/sounds/${soundFile}`)
+    audio.play().catch(err => console.log("Audio failed to play:", err))
+    return audio;
 }

@@ -1,4 +1,5 @@
 import style from "./StartButton.module.css";
+import { playSound } from "@/context/QuizContext";
 
 interface StartButtonProps {
     fetchQuestions: () => void;
@@ -7,7 +8,10 @@ interface StartButtonProps {
 export default function StartButton({ fetchQuestions }: StartButtonProps) {
 
     return (
-        <button className={style.startButton} onClick={fetchQuestions
+        <button className={style.startButton} onClick={() => {
+            fetchQuestions();
+            playSound("start.mp3");
+        }
         }>
             Start
         </button>
