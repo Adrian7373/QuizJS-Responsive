@@ -3,8 +3,7 @@
 import { quizReducer } from "@/app/quiz.reducer";
 import { quizAction, State } from "@/app/quiz.types";
 import { createContext, useContext, useReducer, ReactNode } from "react";
-
-const basePath = process.env.NODE_ENV === "production" ? "/QuizJS-Responsive" : "";
+export { playSound } from "@/utils/audio";
 const QuizStateContext = createContext<State | null>(null);
 const QuizDispatchContext = createContext<React.Dispatch<quizAction> | null>(null);
 
@@ -49,8 +48,3 @@ export const useQuizDispatch = () => {
     return context;
 }
 
-export const playSound = (soundFile: string) => {
-    const audio = new Audio(`${basePath}/sounds/${soundFile}`)
-    audio.play().catch(err => console.log("Audio failed to play:", err))
-    return audio;
-}

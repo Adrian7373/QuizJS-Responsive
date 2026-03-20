@@ -1,4 +1,4 @@
-import { playSound } from "@/context/QuizContext";
+import { playSound } from "@/utils/audio";
 import { State, quizAction } from "./quiz.types"
 
 let bgmAudio: HTMLAudioElement | null = null;
@@ -60,7 +60,7 @@ export const quizReducer = (state: State, action: quizAction) => {
         case "time_ticked": {
             if (!state.questions) return state;
 
-            if (action.payload === 0) {
+            if (state.countdown <= 1000) {
                 playSound("wrong.mp3");
                 return {
                     ...state,
