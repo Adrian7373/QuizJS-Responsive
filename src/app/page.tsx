@@ -44,14 +44,18 @@ function QuizMain() {
   }, [state.isFinished, state.score, highScore]);
 
   useEffect(() => {
-    if (state.questions && state.isRunning && !state.isLoading) {
-      intervalRef.current = setInterval(() => {
-        dispatch({ type: "time_ticked", payload: state.countdown })
-      }, 1000)
-    }
-    if (intervalRef.current)
-      return () => clearInterval(intervalRef.current);
-  }, [state.isRunning, state.countdown, dispatch]);
+    if (!state.isRunning || !state.questions) return;
+
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      dispatch({ type: "time_ticked" });
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    };
+  }, [state.isRunning, state.questions, dispatch]);
 
 
   const fetchQuestions = async () => {

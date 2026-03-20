@@ -60,7 +60,7 @@ export const quizReducer = (state: State, action: quizAction) => {
         case "time_ticked": {
             if (!state.questions) return state;
 
-            if (action.payload === 0) {
+            if (state.countdown === 0) {
                 playSound("wrong.mp3");
                 return {
                     ...state,
