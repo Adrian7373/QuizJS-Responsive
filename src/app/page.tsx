@@ -46,12 +46,13 @@ function QuizMain() {
   useEffect(() => {
     if (state.questions && state.isRunning && !state.isLoading) {
       intervalRef.current = setInterval(() => {
-        dispatch({ type: "time_ticked", payload: state.countdown })
+        dispatch({ type: "time_ticked" })
       }, 1000)
     }
-    if (intervalRef.current)
-      return () => clearInterval(intervalRef.current);
-  }, [state.isRunning, state.countdown, dispatch]);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+  }, [state.questions, state.isRunning, state.isLoading, dispatch]);
 
 
   const fetchQuestions = async () => {

@@ -36,6 +36,6 @@ export type quizAction =
     // System
     | { type: "fetch_started" }
     | { type: "fetch_finished", payload: Response }
-    | { type: "time_ticked", payload: number }
+    | { type: "time_ticked" }
     | { type: "answer_showed" }
     | { type: "answer_hidden" }
