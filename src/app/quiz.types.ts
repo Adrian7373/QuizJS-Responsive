@@ -24,6 +24,7 @@ export interface State {
     category: string;
     isShowingAnswer: boolean;
     isFinished: boolean
+    streak: number
 }
 
 export type Difficulty = "easy" | "medium" | "hard";

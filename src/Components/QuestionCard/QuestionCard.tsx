@@ -5,9 +5,10 @@ import { useQuizDispatch, useQuizState } from "@/context/QuizContext";
 interface QuestionCardProps {
     score: React.ReactNode;
     timer: React.ReactNode;
+    streak: React.ReactNode
 }
 
-export default function QuestionCard({ score, timer }: QuestionCardProps) {
+export default function QuestionCard({ score, timer, streak }: QuestionCardProps) {
 
     const state = useQuizState();
     const result = state.questions.results[state.questionIndex];
@@ -23,7 +24,7 @@ export default function QuestionCard({ score, timer }: QuestionCardProps) {
 
     return (
         <div className={style.card}>
-            <div className={style.info}>{score}{timer}</div>
+            <div className={style.info}>{score}{timer}{streak}</div>
             <p className={style.index}>Question {questionIndex + 1} of 10</p>
             <p className={style.question} dangerouslySetInnerHTML={{ __html: result.question }}></p>
             <div className={style.answers}>

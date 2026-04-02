@@ -57,7 +57,8 @@ export const quizReducer = (state: State, action: quizAction) => {
                 isLoading: false,
                 isRunning: true,
                 isShowingAnswer: false,
-                isFinished: false
+                isFinished: false,
+                streak: 0
             }
         }
         case "time_ticked": {

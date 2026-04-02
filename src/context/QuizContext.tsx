@@ -17,7 +17,8 @@ export const initialState: State = {
     difficulty: "easy",
     category: "",
     isShowingAnswer: false,
-    isFinished: false
+    isFinished: false,
+    streak: 0
 };
 
 export function QuizProvider({ children }: { children: ReactNode }) {
