@@ -9,7 +9,7 @@ export interface Question {
 }
 
 export interface Response {
-    response_code: number;
+    response_code: number | null;
     results: Question[];
 }
 
