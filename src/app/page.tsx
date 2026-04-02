@@ -5,6 +5,7 @@ import style from "./page.module.css";
 import QuestionCard from "@/Components/QuestionCard/QuestionCard";
 import Score from "@/Components/Score/Score";
 import Timer from "@/Components/Timer/Timer";
+import Streak from "@/Components/Streak/Streak";
 import StartButton from "@/Components/StartButton/StartButton";
 import DifficultySelector from "@/Components/DifficultySelector/DifficultySelector";
 import Loading from "@/Components/Loading/Loading";
@@ -93,6 +94,7 @@ function QuizMain() {
         <QuestionCard
           score={<Score />}
           timer={<Timer />}
+          streak={<Streak />}
         />
       </div>
     )

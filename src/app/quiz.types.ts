@@ -9,7 +9,7 @@ export interface Question {
 }
 
 export interface Response {
-    response_code: number;
+    response_code: number | null;
     results: Question[];
 }
 
@@ -24,6 +24,7 @@ export interface State {
     category: string;
     isShowingAnswer: boolean;
     isFinished: boolean
+    streak: number
 }
 
 export type Difficulty = "easy" | "medium" | "hard";

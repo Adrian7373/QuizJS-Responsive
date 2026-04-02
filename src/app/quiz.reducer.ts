@@ -29,7 +29,10 @@ export const quizReducer = (state: State, action: quizAction) => {
 
             return {
                 ...state,
-                score: isCorrect ? state.score + 1 : state.score,
+                score: isCorrect && state.streak > 2 ? state.score + 2
+                    : isCorrect ? state.score + 1
+                        : state.score,
+                streak: isCorrect ? state.streak + 1 : 0,
                 isShowingAnswer: true,
                 isRunning: false
             }
@@ -54,7 +57,8 @@ export const quizReducer = (state: State, action: quizAction) => {
                 isLoading: false,
                 isRunning: true,
                 isShowingAnswer: false,
-                isFinished: false
+                isFinished: false,
+                streak: 0
             }
         }
         case "time_ticked": {
